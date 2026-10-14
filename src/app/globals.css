@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --color-leaf: #7faa76;
+  --color-forest: #406f4f;
+  --color-forest-deep: #2f5a3d;
+  --color-milk: #fbf4e8;
+  --color-mint: #e7f0e2;
+  --color-cream: #fff9f0;
+  --color-honey: #d7b978;
+  --color-honey-soft: #f3e6c6;
+  --color-ink: #26382a;
+  --color-ink-soft: #4e6152;
+
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lora), ui-serif, Georgia, serif;
+
+  --shadow-soft: 0 18px 40px -24px rgb(38 56 42 / 0.28);
+  --shadow-lift: 0 24px 48px -26px rgb(38 56 42 / 0.38);
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 13s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-sway: sway 7s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0);
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-6deg);
+    }
+    50% {
+      transform: rotate(6deg);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-milk font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-leaf);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Hide the page until a saved non-default language is applied (see localeBootScript). */
+  html.locale-pending body {
+    opacity: 0;
+  }
+  body {
+    transition: opacity 0.2s ease;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section {
+    position: relative;
+    padding-block: 4.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 6rem;
+    }
+  }
+
+  /* Organic photo shapes */
+  .shape-blob {
+    border-radius: 64% 36% 55% 45% / 44% 54% 46% 56%;
+  }
+  /* Hero photo: soft organic top, gentle bottom corners so people near the edges stay in frame */
+  .shape-hero {
+    border-radius: 46% 54% 20% 26% / 30% 34% 12% 14%;
+  }
+  .shape-arch {
+    border-radius: 999px 999px 28px 28px;
+  }
+  .shape-petal {
+    border-radius: 120px 18px 120px 18px;
+  }
+  .shape-leaf {
+    border-radius: 18px 140px 18px 140px;
+  }
+  .shape-pebble {
+    border-radius: 42% 58% 38% 62% / 55% 40% 60% 45%;
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-bold transition-all duration-300;
+}
+@utility btn-primary {
+  @apply btn bg-forest text-cream shadow-[0_10px_24px_-14px_rgb(64_111_79/0.9)] hover:-translate-y-0.5 hover:bg-forest-deep;
+}
+@utility btn-ghost {
+  @apply btn border border-forest/25 bg-cream/70 text-forest hover:-translate-y-0.5 hover:border-forest/50 hover:bg-cream;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
