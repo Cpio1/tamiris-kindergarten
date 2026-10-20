@@ -1,0 +1,27 @@
+/* «Тамирис» brand tokens shared by the desktop and mobile sites. */
+@theme {
+  --color-leaf: #7faa76;
+  --color-forest: #406f4f;
+  --color-forest-deep: #2f5a3d;
+  --color-milk: #fbf4e8;
+  --color-mint: #e7f0e2;
+  --color-cream: #fff9f0;
+  --color-honey: #d7b978;
+  --color-honey-soft: #f3e6c6;
+  --color-ink: #26382a;
+  --color-ink-soft: #4e6152;
+
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lora), ui-serif, Georgia, serif;
+
+  --shadow-soft: 0 16px 34px -22px rgb(38 56 42 / 0.28);
+  --shadow-lift: 0 20px 40px -24px rgb(38 56 42 / 0.38);
+}
+
+/* Hide the page until a saved non-default language is applied (see localeBootScript). */
+html.locale-pending body {
+  opacity: 0;
+}
+body {
+  transition: opacity 0.2s ease;
+}

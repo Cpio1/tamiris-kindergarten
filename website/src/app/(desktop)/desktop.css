@@ -1,0 +1,144 @@
+@import "tailwindcss" source(none);
+@import "../../../../shared/src/styles/theme.css";
+
+/* Only desktop sources — the mobile site builds its own, separate stylesheet. */
+@source "../../components";
+@source "./";
+@source "../../../../shared/src";
+
+@theme {
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 13s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-sway: sway 7s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0);
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-6deg);
+    }
+    50% {
+      transform: rotate(6deg);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* Fixed header height — keep in sync with Header (h-[3.75rem]). */
+    --header-h: 3.75rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 0.75rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-milk font-sans text-ink antialiased;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: var(--color-leaf);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section {
+    position: relative;
+    padding-block: 3.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 4.5rem;
+    }
+  }
+
+  /* Organic photo shapes */
+  .shape-blob {
+    border-radius: 64% 36% 55% 45% / 44% 54% 46% 56%;
+  }
+  /* Hero photo: soft organic top, gentle bottom corners so people near the edges stay in frame */
+  .shape-hero {
+    border-radius: 46% 54% 20% 26% / 30% 34% 12% 14%;
+  }
+  .shape-arch {
+    border-radius: 999px 999px 24px 24px;
+  }
+  .shape-petal {
+    border-radius: 96px 14px 96px 14px;
+  }
+  .shape-leaf {
+    border-radius: 14px 112px 14px 112px;
+  }
+  .shape-pebble {
+    border-radius: 42% 58% 38% 62% / 55% 40% 60% 45%;
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 text-[0.875rem] font-bold transition-all duration-300;
+}
+@utility btn-primary {
+  @apply btn bg-forest text-cream shadow-[0_8px_20px_-12px_rgb(64_111_79/0.9)] hover:-translate-y-0.5 hover:bg-forest-deep;
+}
+@utility btn-ghost {
+  @apply btn border border-forest/25 bg-cream/70 text-forest hover:-translate-y-0.5 hover:border-forest/50 hover:bg-cream;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

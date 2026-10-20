@@ -1,0 +1,144 @@
+@import "tailwindcss" source(none);
+@import "../../../shared/src/styles/theme.css";
+
+/* Only mobile sources — the desktop site builds its own, separate stylesheet. */
+@source "../";
+@source "../../../shared/src";
+
+@theme {
+  --animate-fade-up: fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.2s ease-out both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* Sticky header height — keep in sync with MobileHeader (h-14). */
+    --header-h: 3.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-milk font-sans text-[0.875rem] leading-relaxed text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-leaf);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  /* 16px side gutter; on 430px phones the column is 398px wide. */
+  .m-container {
+    @apply mx-auto w-full max-w-[30rem] px-4;
+  }
+
+  /* Type scale: section titles 21–25px, body 14px, captions 11–12px. */
+  .m-eyebrow {
+    @apply inline-flex items-center gap-1.5 text-[0.72rem] font-bold tracking-wide text-forest/85;
+  }
+  .m-title {
+    @apply mt-1 text-[clamp(1.3rem,5.8vw,1.55rem)] leading-[1.2] font-semibold text-forest;
+  }
+  .m-lead {
+    @apply text-[0.875rem] leading-[1.6] text-ink-soft;
+  }
+
+  .m-btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 text-[0.85rem] font-bold whitespace-nowrap transition-[background-color,color,scale] duration-150 active:scale-[0.97];
+    & > svg {
+      flex-shrink: 0;
+    }
+  }
+  .m-btn-primary {
+    @apply bg-forest text-cream shadow-[0_8px_18px_-10px_rgb(64_111_79/0.8)] active:bg-forest-deep;
+  }
+  .m-btn-ghost {
+    @apply border border-forest/20 bg-cream text-forest active:bg-mint;
+  }
+
+  /* Organic frames of the mobile site — softer and smaller than the desktop ones. */
+  .m-shape-hero {
+    border-radius: 56% 44% 1.4rem 2.2rem / 40% 44% 1.4rem 2.2rem;
+  }
+  .m-shape-leaf {
+    border-radius: 1.6rem 0.5rem 1.6rem 0.5rem;
+  }
+  .m-shape-pebble {
+    border-radius: 42% 58% 38% 62% / 55% 40% 60% 45%;
+  }
+  .m-shape-blob {
+    border-radius: 64% 36% 55% 45% / 44% 54% 46% 56%;
+  }
+
+  /* Scroll reveal without a JS animation library — see Reveal.tsx. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    transform: none;
+  }
+}
