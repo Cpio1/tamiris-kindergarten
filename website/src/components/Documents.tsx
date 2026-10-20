@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Clock3 } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { siteConfig } from "@shared/config/site";
 import { useLanguage } from "@shared/i18n/LanguageProvider";
 import { Leaf, Squiggle, Star } from "@shared/ui/Decorations";
@@ -53,23 +53,22 @@ export function Documents() {
                 <Squiggle className="mt-4 w-20" color="#D7B978" />
 
                 <div className="mt-6">
-                  {url ? (
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn group bg-cream text-forest hover:-translate-y-0.5 hover:bg-honey-soft"
-                    >
-                      {t.documents.button}
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
-                      <span className="sr-only">{t.documents.newTab}</span>
-                    </a>
-                  ) : (
-                    <p role="status" className="inline-flex items-center gap-3 rounded-2xl border border-cream/20 bg-cream/10 px-4 py-2.5 text-[0.88rem] font-semibold text-cream">
-                      <Clock3 className="h-4.5 w-4.5 shrink-0 text-honey" aria-hidden />
-                      {t.documents.soon}
-                    </p>
-                  )}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex min-h-11 items-center gap-3 rounded-full bg-cream py-1.5 pr-5 pl-1.5 text-[0.9rem] font-bold text-forest shadow-[0_12px_26px_-16px_rgb(0_0_0/0.55)] transition-[translate,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:bg-honey-soft hover:shadow-[0_16px_30px_-16px_rgb(0_0_0/0.6)] active:translate-y-0"
+                  >
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-mint transition-colors duration-300 group-hover:bg-forest group-hover:text-cream">
+                      <FileText className="h-4 w-4" strokeWidth={1.9} aria-hidden />
+                    </span>
+                    {t.documents.button}
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden
+                    />
+                    <span className="sr-only">{t.documents.newTab}</span>
+                  </a>
                 </div>
               </div>
 

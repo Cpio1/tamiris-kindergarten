@@ -63,7 +63,6 @@ type Dictionary = {
     title: string;
     description: string;
     button: string;
-    soon: string;
     newTab: string;
   };
   contacts: {
@@ -169,7 +168,6 @@ export const translations: Record<Locale, Dictionary> = {
       title: "Құжаттар",
       description: "Балабақша қызметіне қатысты құжаттармен танысыңыз.",
       button: "Құжаттарды қарау",
-      soon: "Құжаттар жақын арада қолжетімді болады.",
       newTab: "(жаңа бетте ашылады)",
     },
     contacts: {
@@ -272,8 +270,7 @@ export const translations: Record<Locale, Dictionary> = {
       eyebrow: "Документы",
       title: "Документы",
       description: "Ознакомьтесь с документами, связанными с деятельностью детского сада.",
-      button: "Смотреть документы",
-      soon: "Документы скоро будут доступны.",
+      button: "Посмотреть документы",
       newTab: "(откроется в новой вкладке)",
     },
     contacts: {

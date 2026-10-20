@@ -30,7 +30,10 @@ export const siteConfig = {
     schemaStreet: "улица Кенесары хан, 116, микрорайон Каргалы, Наурызбайский район",
     query: "Казахстан, Алматы, Наурызбайский район, микрорайон Каргалы, улица Кенесары хан, 116",
   },
-  documentsUrl: process.env.NEXT_PUBLIC_DOCUMENTS_URL?.trim() || "",
+  // Google Drive folder with the kindergarten's documents (NEXT_PUBLIC_DOCUMENTS_URL can override it).
+  documentsUrl:
+    process.env.NEXT_PUBLIC_DOCUMENTS_URL?.trim() ||
+    "https://drive.google.com/drive/folders/1brjQEkcEIEAv_zYDI7v5sKJnlZ5D2TBL",
 } as const;
 
 const encodedAddress = encodeURIComponent(siteConfig.address.query);

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Clock3, FileText } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { siteConfig } from "@shared/config/site";
 import { useLanguage } from "@shared/i18n/LanguageProvider";
 import { Leaf, Star } from "@shared/ui/Decorations";
@@ -33,26 +33,19 @@ export function Documents() {
             </div>
 
             <div className="relative mt-4">
-              {url ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="m-btn w-full bg-cream text-forest active:bg-honey-soft"
-                >
-                  {t.documents.button}
-                  <ArrowUpRight className="size-4" aria-hidden />
-                  <span className="sr-only">{t.documents.newTab}</span>
-                </a>
-              ) : (
-                <p
-                  role="status"
-                  className="flex items-center gap-2.5 rounded-2xl border border-cream/20 bg-cream/10 px-3.5 py-2.5 text-[0.8rem] leading-snug font-semibold"
-                >
-                  <Clock3 className="size-4 shrink-0 text-honey" aria-hidden />
-                  {t.documents.soon}
-                </p>
-              )}
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex min-h-12 w-full items-center gap-3 rounded-full bg-cream py-1.5 pr-4 pl-1.5 text-[0.875rem] font-bold text-forest shadow-[0_10px_22px_-14px_rgb(0_0_0/0.55)] transition-[background-color,scale] duration-200 ease-out hover:bg-honey-soft active:scale-[0.98] active:bg-honey-soft"
+              >
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-mint transition-colors duration-200 group-hover:bg-forest group-hover:text-cream group-active:bg-forest group-active:text-cream">
+                  <FileText className="size-4" strokeWidth={1.9} aria-hidden />
+                </span>
+                <span className="flex-1">{t.documents.button}</span>
+                <ArrowUpRight className="size-4 shrink-0" aria-hidden />
+                <span className="sr-only">{t.documents.newTab}</span>
+              </a>
             </div>
           </div>
         </Reveal>
